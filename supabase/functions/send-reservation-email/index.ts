@@ -106,7 +106,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send email to hotel
     await resend.emails.send({
-      from: "Park Hôtel <onboarding@resend.dev>",
+      from: "Park Hôtel <noreply@parkhotelcongo.com>",
       to: [hotelEmail],
       subject: subject,
       html: htmlContent,
@@ -114,7 +114,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Send confirmation to guest
     await resend.emails.send({
-      from: "Park Hôtel <onboarding@resend.dev>",
+      from: "Park Hôtel <noreply@parkhotelcongo.com>",
       to: [data.email],
       subject: `Confirmation - ${data.type === "room" ? "Réservation de chambre" : "Réservation de table"}`,
       html: guestHtmlContent,
