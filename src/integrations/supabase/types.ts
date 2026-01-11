@@ -59,6 +59,48 @@ export type Database = {
         }
         Relationships: []
       }
+      table_reservations: {
+        Row: {
+          created_at: string
+          email: string
+          guest_name: string
+          guests_count: number
+          id: string
+          phone: string
+          reservation_date: string
+          reservation_time: string
+          special_requests: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          guest_name: string
+          guests_count?: number
+          id?: string
+          phone: string
+          reservation_date: string
+          reservation_time: string
+          special_requests?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          guest_name?: string
+          guests_count?: number
+          id?: string
+          phone?: string
+          reservation_date?: string
+          reservation_time?: string
+          special_requests?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
