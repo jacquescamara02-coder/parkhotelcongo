@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const ReservationForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,24 +25,42 @@ const ReservationForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const { error } = await supabase.from("reservations").insert({
+        guest_name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        check_in: formData.checkIn,
+        check_out: formData.checkOut,
+        room_type: formData.roomType,
+        guests_count: parseInt(formData.guests) || 1,
+        special_requests: formData.message.trim() || null,
+      });
 
-    toast.success("Demande de réservation envoyée!", {
-      description: "Nous vous contacterons dans les plus brefs délais.",
-    });
+      if (error) throw error;
 
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      checkIn: "",
-      checkOut: "",
-      roomType: "",
-      guests: "",
-      message: "",
-    });
-    setIsSubmitting(false);
+      toast.success("Demande de réservation envoyée!", {
+        description: "Nous vous contacterons dans les plus brefs délais pour confirmer votre réservation.",
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        checkIn: "",
+        checkOut: "",
+        roomType: "",
+        guests: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Reservation error:", error);
+      toast.error("Erreur lors de l'envoi", {
+        description: "Veuillez réessayer ou nous contacter par téléphone.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (field: string, value: string) => {

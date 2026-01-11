@@ -14,7 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      reservations: {
+        Row: {
+          check_in: string
+          check_out: string
+          created_at: string
+          email: string
+          guest_name: string
+          guests_count: number
+          id: string
+          phone: string
+          room_type: string
+          special_requests: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          check_in: string
+          check_out: string
+          created_at?: string
+          email: string
+          guest_name: string
+          guests_count?: number
+          id?: string
+          phone: string
+          room_type: string
+          special_requests?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          check_in?: string
+          check_out?: string
+          created_at?: string
+          email?: string
+          guest_name?: string
+          guests_count?: number
+          id?: string
+          phone?: string
+          room_type?: string
+          special_requests?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
