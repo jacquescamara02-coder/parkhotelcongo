@@ -1,9 +1,17 @@
-import { Bed, Bath, Wifi, Tv, Wind } from "lucide-react";
+import { useState } from "react";
+import { Bed, Bath, Wifi, Tv, Wind, Images } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import RoomGalleryDialog from "./RoomGalleryDialog";
 import room1Image from "@/assets/room1.jpeg";
 import room2Image from "@/assets/room2.jpeg";
 import lobbyImage from "@/assets/lobby.jpeg";
+import bathroom1Image from "@/assets/bathroom1.jpeg";
+import bathroom2Image from "@/assets/bathroom2.jpeg";
+import showerImage from "@/assets/shower.jpeg";
+import deskImage from "@/assets/desk.jpeg";
+import loungeImage from "@/assets/lounge.jpeg";
+import staircaseImage from "@/assets/staircase.jpeg";
 
 const rooms = [
   {
@@ -12,6 +20,7 @@ const rooms = [
     image: room1Image,
     capacity: "2 personnes",
     features: ["Lit double", "Salle de bain privée", "Climatisation", "TV écran plat"],
+    gallery: [room1Image, deskImage, bathroom2Image, showerImage],
   },
   {
     name: "Chambre Supérieure",
@@ -19,6 +28,7 @@ const rooms = [
     image: room2Image,
     capacity: "2-3 personnes",
     features: ["Grand lit", "Salle de bain privée", "Climatisation", "Wi-Fi gratuit"],
+    gallery: [room2Image, deskImage, bathroom1Image, showerImage],
   },
   {
     name: "Suite Familiale",
@@ -26,6 +36,7 @@ const rooms = [
     image: lobbyImage,
     capacity: "3 personnes",
     features: ["Lit king-size", "Salon privé", "Minibar", "Vue sur cour"],
+    gallery: [lobbyImage, loungeImage, bathroom2Image, staircaseImage],
   },
 ];
 
@@ -40,6 +51,8 @@ const amenityIcons: Record<string, React.ReactNode> = {
 };
 
 const RoomsSection = () => {
+  const [selectedRoom, setSelectedRoom] = useState<typeof rooms[0] | null>(null);
+
   return (
     <section id="chambres" className="section-padding bg-secondary/30 african-pattern">
       <div className="container-hotel">
@@ -65,12 +78,21 @@ const RoomsSection = () => {
               className="overflow-hidden card-hover bg-card border-0 shadow-card"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="relative h-64 overflow-hidden">
+              <div 
+                className="relative h-64 overflow-hidden cursor-pointer group"
+                onClick={() => setSelectedRoom(room)}
+              >
                 <img
                   src={room.image}
                   alt={room.name}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 text-white font-medium">
+                    <Images className="w-5 h-5" />
+                    Voir les photos
+                  </div>
+                </div>
                 <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
                   {room.capacity}
                 </div>
@@ -102,6 +124,14 @@ const RoomsSection = () => {
           ))}
         </div>
       </div>
+
+      {/* Gallery Dialog */}
+      <RoomGalleryDialog
+        open={!!selectedRoom}
+        onOpenChange={(open) => !open && setSelectedRoom(null)}
+        roomName={selectedRoom?.name || ""}
+        images={selectedRoom?.gallery || []}
+      />
     </section>
   );
 };
