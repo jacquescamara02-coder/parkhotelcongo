@@ -54,7 +54,7 @@ const ContactSection = () => {
                 Près de la Grande Poste, Centre-ville
               </p>
               <a
-                href="https://maps.google.com/?q=Lubumbashi,Congo"
+                href="https://www.google.com/maps/search/?api=1&query=Park+Hotel+50+Avenue+Munongo+Lubumbashi+RDC"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
