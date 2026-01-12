@@ -6,12 +6,14 @@ import RoomGalleryDialog from "./RoomGalleryDialog";
 import room1Image from "@/assets/room1.jpeg";
 import room2Image from "@/assets/room2.jpeg";
 import lobbyImage from "@/assets/lobby.jpeg";
+import courtyardImage from "@/assets/courtyard.jpeg";
 import bathroom1Image from "@/assets/bathroom1.jpeg";
 import bathroom2Image from "@/assets/bathroom2.jpeg";
 import showerImage from "@/assets/shower.jpeg";
 import deskImage from "@/assets/desk.jpeg";
 import loungeImage from "@/assets/lounge.jpeg";
 import staircaseImage from "@/assets/staircase.jpeg";
+import receptionImage from "@/assets/reception.jpeg";
 
 const rooms = [
   {
@@ -33,10 +35,10 @@ const rooms = [
   {
     name: "Suite Familiale",
     description: "Idéale pour les familles et séjours prolongés",
-    image: lobbyImage,
+    image: courtyardImage,
     capacity: "3 personnes",
     features: ["Lit king-size", "Salon privé", "Minibar", "Vue sur cour"],
-    gallery: [lobbyImage, loungeImage, bathroom2Image, staircaseImage],
+    gallery: [courtyardImage, lobbyImage, loungeImage, bathroom2Image, staircaseImage, receptionImage],
   },
 ];
 
