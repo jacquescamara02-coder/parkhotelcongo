@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 
 const contactInfo = [
   {
@@ -11,6 +11,12 @@ const contactInfo = [
     title: "Téléphone",
     details: ["+243 997 032 330"],
     link: "tel:+243997032330",
+  },
+  {
+    icon: MessageCircle,
+    title: "WhatsApp",
+    details: ["+234 997 032 330"],
+    link: "https://wa.me/234997032330",
   },
   {
     icon: Mail,
@@ -54,7 +60,7 @@ const ContactSection = () => {
                 Près de la Grande Poste, Centre-ville
               </p>
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Park+Hotel+50+Avenue+Munongo+Lubumbashi+RDC"
+                href="https://www.google.com/maps/search/?api=1&query=-11.6608,27.4794"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
