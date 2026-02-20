@@ -1,7 +1,8 @@
-import { Wine, Coffee, Armchair, CreditCard } from "lucide-react";
+import { Wine, Coffee, Armchair, CreditCard, Banknote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import receptionImage from "@/assets/reception.jpeg";
 import barImage from "@/assets/bar.jpeg";
+import atmImage from "@/assets/atm.jpeg";
 
 const services = [
   {
@@ -16,11 +17,17 @@ const services = [
     description: "Notre équipe dévouée est à votre service à tout moment pour répondre à vos besoins",
     image: receptionImage,
   },
+  {
+    icon: Banknote,
+    title: "ATM Ecobank 24h/7j",
+    description: "Un distributeur automatique disponible sur place pour vos retraits et transactions bancaires",
+    image: atmImage,
+  },
 ];
 
 const amenities = [
   { icon: Armchair, title: "Salon de détente" },
-  { icon: CreditCard, title: "Ecobank sur place" },
+  { icon: CreditCard, title: "ATM Ecobank 24h/7j" },
   { icon: Wine, title: "Bar bien approvisionné" },
   { icon: Coffee, title: "Service en chambre" },
 ];

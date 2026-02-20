@@ -15,11 +15,6 @@ const cuisines = [
     description: "Classiques européens revisités avec des saveurs locales",
     icon: "🇪🇺",
   },
-  {
-    name: "Cuisine Américaine",
-    description: "Burgers, grillades et spécialités américaines",
-    icon: "🇺🇸",
-  },
 ];
 
 const RestaurantSection = () => {
