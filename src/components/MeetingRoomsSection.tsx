@@ -1,8 +1,7 @@
-import { Users, Presentation, Sparkles } from "lucide-react";
+import { Users, Presentation } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import salleGrandeImage from "@/assets/salle-reunion-grande.jpeg";
 import sallePetiteImage from "@/assets/salle-reunion-petite.jpeg";
-import sallePetite2Image from "@/assets/salle-reunion-petite2.jpeg";
 
 const meetingRooms = [
   {
@@ -16,7 +15,7 @@ const meetingRooms = [
     name: "Salle de Réunion Privée",
     capacity: "20 personnes",
     description: "Parfaite pour les réunions d'affaires, comités et sessions de travail en petit groupe",
-    images: [sallePetiteImage, sallePetite2Image],
+    image: sallePetiteImage,
     features: ["Tableau", "Climatisation", "Cadre intimiste", "Wi-Fi"],
   },
 ];
@@ -25,22 +24,20 @@ const MeetingRoomsSection = () => {
   return (
     <section id="salles" className="section-padding bg-background">
       <div className="container-hotel">
-        {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-primary font-semibold tracking-wider uppercase text-sm">
             Nos Espaces
           </span>
           <h2 className="title-section mt-3 mb-4">
-            Salles de Réunion & Spa
+            Salles de Réunion
           </h2>
           <p className="subtitle">
-            Des espaces professionnels parfaitement équipés pour vos événements, 
-            et un spa pour votre bien-être.
+            Deux espaces professionnels parfaitement équipés pour vos conférences, 
+            séminaires et réunions d'affaires.
           </p>
         </div>
 
-        {/* Meeting Rooms */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 gap-8">
           {meetingRooms.map((room) => (
             <Card
               key={room.name}
@@ -48,7 +45,7 @@ const MeetingRoomsSection = () => {
             >
               <div className="relative h-72 overflow-hidden">
                 <img
-                  src={room.image || room.images?.[0]}
+                  src={room.image}
                   alt={room.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -79,20 +76,6 @@ const MeetingRoomsSection = () => {
             </Card>
           ))}
         </div>
-
-        {/* Spa Teaser */}
-        <Card className="bg-card border-border p-8 text-center">
-          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Sparkles className="w-8 h-8 text-primary" />
-          </div>
-          <h3 className="font-display text-2xl font-semibold text-foreground mb-2">
-            Spa & Bien-être
-          </h3>
-          <p className="text-muted-foreground max-w-lg mx-auto">
-            Détendez-vous dans notre espace spa. Un havre de paix pour récupérer 
-            après une journée de travail ou de voyage. Photos à venir bientôt.
-          </p>
-        </Card>
       </div>
     </section>
   );
