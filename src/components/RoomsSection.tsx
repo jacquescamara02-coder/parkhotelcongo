@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Bed, Bath, Wifi, Tv, Wind, Images } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,7 +6,6 @@ import RoomGalleryDialog from "./RoomGalleryDialog";
 import room1Image from "@/assets/room1.jpeg";
 import room2Image from "@/assets/room2.jpeg";
 import lobbyImage from "@/assets/lobby.jpeg";
-import courtyardImage from "@/assets/courtyard.jpeg";
 import bathroom1Image from "@/assets/bathroom1.jpeg";
 import bathroom2Image from "@/assets/bathroom2.jpeg";
 import showerImage from "@/assets/shower.jpeg";
@@ -14,6 +13,11 @@ import deskImage from "@/assets/desk.jpeg";
 import loungeImage from "@/assets/lounge.jpeg";
 import staircaseImage from "@/assets/staircase.jpeg";
 import receptionImage from "@/assets/reception.jpeg";
+import jardin1Image from "@/assets/jardin1.jpeg";
+import jardin2Image from "@/assets/jardin2.jpeg";
+import jardin3Image from "@/assets/jardin3.jpeg";
+import jardin4Image from "@/assets/jardin4.jpeg";
+import jardin5Image from "@/assets/jardin5.jpeg";
 
 const rooms = [
   {
@@ -33,12 +37,13 @@ const rooms = [
     gallery: [room2Image, deskImage, bathroom1Image, showerImage],
   },
   {
-    name: "Suite Familiale",
-    description: "Idéale pour les familles et séjours prolongés",
-    image: courtyardImage,
+    name: "Le Jardin",
+    description: "Un cadre verdoyant et paisible en plein air",
+    images: [jardin1Image, jardin2Image, jardin3Image, jardin4Image, jardin5Image],
+    image: jardin1Image,
     capacity: "3 personnes",
     features: ["Lit king-size", "Salon privé", "Minibar", "Vue sur cour"],
-    gallery: [courtyardImage, lobbyImage, loungeImage, bathroom2Image, staircaseImage, receptionImage],
+    gallery: [jardin1Image, jardin2Image, jardin3Image, jardin4Image, jardin5Image],
   },
 ];
 
@@ -54,6 +59,16 @@ const amenityIcons: Record<string, React.ReactNode> = {
 
 const RoomsSection = () => {
   const [selectedRoom, setSelectedRoom] = useState<typeof rooms[0] | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const jardin = rooms.find(r => r.name === "Le Jardin");
+    if (!jardin?.images) return;
+    const interval = setInterval(() => {
+      setCurrentSlide(prev => (prev + 1) % jardin.images!.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section id="chambres" className="section-padding bg-secondary/30 african-pattern">
@@ -84,11 +99,23 @@ const RoomsSection = () => {
                 className="relative h-64 overflow-hidden cursor-pointer group"
                 onClick={() => setSelectedRoom(room)}
               >
-                <img
-                  src={room.image}
-                  alt={room.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+                {room.images ? (
+                  room.images.map((img, imgIdx) => (
+                    <img
+                      key={imgIdx}
+                      src={img}
+                      alt={`${room.name} ${imgIdx + 1}`}
+                      className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+                      style={{ opacity: currentSlide === imgIdx ? 1 : 0 }}
+                    />
+                  ))
+                ) : (
+                  <img
+                    src={room.image}
+                    alt={room.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                )}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 text-white font-medium">
                     <Images className="w-5 h-5" />
