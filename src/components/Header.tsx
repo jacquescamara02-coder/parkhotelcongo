@@ -55,7 +55,7 @@ const Header = () => {
             <a href="#accueil" className="flex items-center gap-3">
               <img src={logo} alt="Park Hôtel Logo" className="w-14 h-14 object-contain" />
               <div>
-                <h1 className="font-display font-bold text-xl text-foreground">Park Hôtel</h1>
+                <span className="font-display font-bold text-xl text-foreground">Park Hôtel</span>
                 <p className="text-xs text-muted-foreground tracking-wide">LUBUMBASHI</p>
               </div>
             </a>

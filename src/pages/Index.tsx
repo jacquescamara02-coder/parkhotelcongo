@@ -6,6 +6,7 @@ import MeetingRoomsSection from "@/components/MeetingRoomsSection";
 import SpaSection from "@/components/SpaSection";
 import RestaurantSection from "@/components/RestaurantSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import FAQSection from "@/components/FAQSection";
 import ReservationForm from "@/components/ReservationForm";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -22,6 +23,7 @@ const Index = () => {
         <SpaSection />
         <RestaurantSection />
         <TestimonialsSection />
+        <FAQSection />
         <ReservationForm />
         <ContactSection />
       </main>
