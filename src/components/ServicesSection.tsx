@@ -100,7 +100,7 @@ const ServicesSection = () => {
             Nos Services
           </span>
           <h2 className="title-section mt-3 mb-4">
-            Des Services d'Excellence
+            Des Services à Votre Disposition
           </h2>
           <p className="subtitle">
             Profitez de nos installations modernes et de notre service attentionné 
