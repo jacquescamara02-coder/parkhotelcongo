@@ -21,7 +21,7 @@ const Hero = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-full px-4 py-2">
             <Star className="w-4 h-4 text-primary fill-primary" />
-            <span className="text-primary-foreground text-sm font-medium">77 Chambres de Luxe</span>
+            <span className="text-primary-foreground text-sm font-medium">77 Chambres Confortables</span>
           </div>
 
           {/* Title */}
@@ -32,8 +32,8 @@ const Hero = () => {
 
           {/* Description */}
           <p className="text-lg md:text-xl text-white/90 leading-relaxed max-w-xl">
-            Au cœur de Lubumbashi, découvrez un havre de paix où confort et hospitalité congolaise 
-            se rencontrent. Hébergement de qualité et gastronomie exceptionnelle vous attendent.
+            Au cœur de Lubumbashi, découvrez un cadre accueillant où confort et hospitalité congolaise 
+            se rencontrent. Hébergement soigné et bonne cuisine vous attendent.
           </p>
 
           {/* Location */}

@@ -14,7 +14,7 @@ const meetingRooms = [
   {
     name: "Salle de Réunion Privée",
     capacity: "20 personnes",
-    description: "Parfaite pour les réunions d'affaires, comités et sessions de travail en petit groupe",
+    description: "Adaptée aux réunions d'affaires, comités et sessions de travail en petit groupe",
     image: sallePetiteImage,
     features: ["Tableau", "Climatisation", "Cadre intimiste", "Wi-Fi"],
   },
@@ -32,7 +32,7 @@ const MeetingRoomsSection = () => {
             Salles de Réunion
           </h2>
           <p className="subtitle">
-            Deux espaces professionnels parfaitement équipés pour vos conférences, 
+            Deux espaces professionnels bien équipés pour vos conférences, 
             séminaires et réunions d'affaires.
           </p>
         </div>

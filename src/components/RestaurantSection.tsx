@@ -61,7 +61,7 @@ const RestaurantSection = () => {
                 Notre Restaurant
               </span>
               <h2 className="title-section mt-3 mb-4">
-                Une Expérience Culinaire Unique
+                Notre Cuisine
               </h2>
               <p className="subtitle">
                 La satisfaction de nos clients est notre priorité. Découvrez une cuisine 

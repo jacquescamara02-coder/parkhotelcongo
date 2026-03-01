@@ -7,7 +7,7 @@ const testimonials = [
     role: "Homme d'affaires",
     location: "Kinshasa, RDC",
     rating: 5,
-    comment: "Un séjour exceptionnel au Park Hôtel. Le personnel est très accueillant et les chambres sont impeccables. Je recommande vivement pour tout voyage d'affaires à Lubumbashi.",
+    comment: "Un très bon séjour au Park Hôtel. Le personnel est accueillant et les chambres sont propres. Je recommande pour tout voyage d'affaires à Lubumbashi.",
   },
   {
     name: "Marie Kabongo",
@@ -21,7 +21,7 @@ const testimonials = [
     role: "Consultant",
     location: "Johannesburg, Afrique du Sud",
     rating: 5,
-    comment: "Excellent rapport qualité-prix. Le bar est bien approvisionné et le service est irréprochable. Je reviens à chaque fois que je suis de passage.",
+    comment: "Bon rapport qualité-prix. Le bar est bien approvisionné et le service est fiable. Je reviens à chaque fois que je suis de passage.",
   },
   {
     name: "Sophie Kalala",

@@ -20,7 +20,7 @@ const faqs = [
   {
     question: "Le Park Hôtel dispose-t-il d'un spa ?",
     answer:
-      "Oui, notre spa offre des massages aux pierres chaudes, soins du visage, aromathérapie et soins corporels pour une détente absolue.",
+      "Oui, notre spa propose des massages aux pierres chaudes, soins du visage, aromathérapie et soins corporels pour un bon moment de détente.",
   },
   {
     question: "Où se situe le Park Hôtel Lubumbashi ?",
