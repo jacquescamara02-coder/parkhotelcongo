@@ -79,11 +79,11 @@ const RoomsSection = () => {
             Nos Chambres
           </span>
           <h2 className="title-section mt-3 mb-4">
-            Un Confort Exceptionnel
+            Des Chambres Confortables
           </h2>
           <p className="subtitle">
             77 chambres soigneusement aménagées avec salles de bain privées et lits 
-            confortables de 2 à 3 places pour un repos parfait.
+            confortables de 2 à 3 places pour un bon repos.
           </p>
         </div>
 

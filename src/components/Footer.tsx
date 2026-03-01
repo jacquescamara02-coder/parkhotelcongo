@@ -19,8 +19,8 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-white/70 text-sm leading-relaxed">
-              Votre destination de choix à Lubumbashi pour un séjour confortable 
-              et une expérience culinaire exceptionnelle.
+              Votre adresse à Lubumbashi pour un séjour confortable 
+              et une cuisine soignée.
             </p>
           </div>
 

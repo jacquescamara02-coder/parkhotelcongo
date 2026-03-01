@@ -28,8 +28,8 @@ const SpaSection = () => {
             Spa & Détente
           </h2>
           <p className="subtitle">
-            Offrez-vous un moment de relaxation absolue dans notre spa. 
-            Un havre de paix pour récupérer après une journée de travail ou de voyage.
+            Offrez-vous un moment de détente dans notre spa. 
+            Un espace calme pour récupérer après une journée de travail ou de voyage.
           </p>
         </div>
 
