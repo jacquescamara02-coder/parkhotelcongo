@@ -122,9 +122,6 @@ const RoomsSection = () => {
                     Voir les photos
                   </div>
                 </div>
-                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
-                  {room.capacity}
-                </div>
               </div>
               <CardContent className="p-6">
                 <h3 className="font-display text-xl font-semibold mb-2">{room.name}</h3>
