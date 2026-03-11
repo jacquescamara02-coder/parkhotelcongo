@@ -15,8 +15,8 @@ const contactInfo = [
   {
     icon: MessageCircle,
     title: "WhatsApp",
-    details: ["+234 997 032 330"],
-    link: "https://wa.me/234997032330",
+    details: ["+243 997 032 330"],
+    link: "https://wa.me/243997032330",
   },
   {
     icon: Mail,

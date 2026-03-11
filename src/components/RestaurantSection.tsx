@@ -65,7 +65,7 @@ const RestaurantSection = () => {
               </h2>
               <p className="subtitle">
                 La satisfaction de nos clients est notre priorité. Découvrez une cuisine 
-                délicieuse qui marie les saveurs du Congo, d'Europe et d'Amérique.
+                délicieuse qui marie les saveurs du Congo et d'Europe.
               </p>
             </div>
 

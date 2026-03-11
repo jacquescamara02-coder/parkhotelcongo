@@ -24,7 +24,6 @@ const rooms = [
     name: "Chambre Standard",
     description: "Confort et simplicité pour un séjour agréable",
     image: room1Image,
-    capacity: "2 personnes",
     features: ["Lit double", "Salle de bain privée", "Climatisation", "TV écran plat"],
     gallery: [room1Image, deskImage, bathroom2Image, showerImage],
   },
@@ -32,7 +31,6 @@ const rooms = [
     name: "Chambre Supérieure",
     description: "Plus d'espace pour un confort optimal",
     image: room2Image,
-    capacity: "2-3 personnes",
     features: ["Grand lit", "Salle de bain privée", "Climatisation", "Wi-Fi gratuit"],
     gallery: [room2Image, deskImage, bathroom1Image, showerImage],
   },
@@ -41,7 +39,6 @@ const rooms = [
     description: "Un cadre verdoyant et paisible en plein air",
     images: [jardin1Image, jardin2Image, jardin3Image, jardin4Image, jardin5Image],
     image: jardin1Image,
-    capacity: "3 personnes",
     features: ["Lit king-size", "Salon privé", "Minibar", "Vue sur cour"],
     gallery: [jardin1Image, jardin2Image, jardin3Image, jardin4Image, jardin5Image],
   },
@@ -121,9 +118,6 @@ const RoomsSection = () => {
                     <Images className="w-5 h-5" />
                     Voir les photos
                   </div>
-                </div>
-                <div className="absolute top-4 right-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
-                  {room.capacity}
                 </div>
               </div>
               <CardContent className="p-6">
