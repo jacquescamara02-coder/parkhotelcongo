@@ -1,4 +1,5 @@
 import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
+import { AnimatedSection, StaggerContainer, StaggerItem, fadeLeft, fadeRight } from "./AnimatedSection";
 
 const contactInfo = [
   {
@@ -36,7 +37,7 @@ const ContactSection = () => {
     <section id="contact" className="section-padding bg-background">
       <div className="container-hotel">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-primary font-semibold tracking-wider uppercase text-sm">
             Contact
           </span>
@@ -47,11 +48,11 @@ const ContactSection = () => {
             Situé au cœur de Lubumbashi, Park Hôtel est facilement accessible 
             depuis les principaux points d'intérêt de la ville.
           </p>
-        </div>
+        </AnimatedSection>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Map placeholder */}
-          <div className="relative rounded-2xl overflow-hidden shadow-card bg-secondary h-[400px] flex items-center justify-center">
+          <AnimatedSection variants={fadeLeft} className="relative rounded-2xl overflow-hidden shadow-card bg-secondary h-[400px] flex items-center justify-center">
             <div className="text-center p-8">
               <MapPin className="w-16 h-16 text-primary mx-auto mb-4" />
               <h3 className="font-display text-xl font-semibold mb-2">Avenue Munongo n°50</h3>
@@ -71,36 +72,37 @@ const ContactSection = () => {
                 </svg>
               </a>
             </div>
-          </div>
+          </AnimatedSection>
 
           {/* Contact Cards */}
-          <div className="grid sm:grid-cols-2 gap-6">
+          <StaggerContainer className="grid sm:grid-cols-2 gap-6">
             {contactInfo.map((item) => (
-              <div
-                key={item.title}
-                className="p-6 bg-card rounded-xl border border-border hover:border-primary/30 transition-colors"
-              >
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <item.icon className="w-6 h-6 text-primary" />
+              <StaggerItem key={item.title}>
+                <div
+                  className="p-6 bg-card rounded-xl border border-border hover:border-primary/30 transition-colors"
+                >
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                    <item.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
+                  {item.link ? (
+                    <a
+                      href={item.link}
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {item.details.map((detail, i) => (
+                        <p key={i}>{detail}</p>
+                      ))}
+                    </a>
+                  ) : (
+                    item.details.map((detail, i) => (
+                      <p key={i} className="text-muted-foreground">{detail}</p>
+                    ))
+                  )}
                 </div>
-                <h3 className="font-semibold text-foreground mb-2">{item.title}</h3>
-                {item.link ? (
-                  <a
-                    href={item.link}
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    {item.details.map((detail, i) => (
-                      <p key={i}>{detail}</p>
-                    ))}
-                  </a>
-                ) : (
-                  item.details.map((detail, i) => (
-                    <p key={i} className="text-muted-foreground">{detail}</p>
-                  ))
-                )}
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Utensils, Clock, ChefHat } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AnimatedSection, fadeLeft, fadeRight } from "./AnimatedSection";
 import restaurantImage from "@/assets/restaurant.jpeg";
 import TableReservationForm from "./TableReservationForm";
 
@@ -26,7 +27,7 @@ const RestaurantSection = () => {
       <div className="container-hotel">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Image */}
-          <div className="relative order-2 lg:order-1">
+          <AnimatedSection className="relative order-2 lg:order-1" variants={fadeLeft}>
             <div className="relative rounded-2xl overflow-hidden shadow-elevated">
               <img
                 src={restaurantImage}
@@ -52,10 +53,10 @@ const RestaurantSection = () => {
             {/* Decorative element */}
             <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary/10 rounded-full -z-10" />
             <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-secondary rounded-full -z-10" />
-          </div>
+          </AnimatedSection>
 
           {/* Content */}
-          <div className="order-1 lg:order-2 space-y-8">
+          <AnimatedSection className="order-1 lg:order-2 space-y-8" variants={fadeRight}>
             <div>
               <span className="text-primary font-semibold tracking-wider uppercase text-sm">
                 Notre Restaurant
@@ -102,7 +103,7 @@ const RestaurantSection = () => {
               <Utensils className="w-5 h-5 mr-2" />
               Réserver une table
             </Button>
-          </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>
