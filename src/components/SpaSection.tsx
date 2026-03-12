@@ -1,5 +1,6 @@
 import { Sparkles, Heart, Leaf, Droplets } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { AnimatedSection, StaggerContainer, StaggerItem, fadeLeft } from "./AnimatedSection";
 import spa1Image from "@/assets/spa1.jpeg";
 import spa2Image from "@/assets/spa2.jpeg";
 import spa3Image from "@/assets/spa3.jpeg";
@@ -20,7 +21,7 @@ const SpaSection = () => {
   return (
     <section id="spa" className="section-padding bg-secondary/30">
       <div className="container-hotel">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-primary font-semibold tracking-wider uppercase text-sm">
             Bien-être
           </span>
@@ -31,43 +32,44 @@ const SpaSection = () => {
             Offrez-vous un moment de détente dans notre spa. 
             Un espace calme pour récupérer après une journée de travail ou de voyage.
           </p>
-        </div>
+        </AnimatedSection>
 
         {/* Photo Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
+        <StaggerContainer className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
           {spaImages.map((image, index) => (
-            <div
+            <StaggerItem
               key={index}
-              className={`relative overflow-hidden rounded-xl group ${
-                index === 0 ? "md:col-span-2 md:row-span-2" : ""
-              }`}
+              className={index === 0 ? "md:col-span-2 md:row-span-2" : ""}
             >
-              <img
-                src={image}
-                alt={`Spa Park Hôtel - Photo ${index + 1}`}
-                className={`w-full object-cover transition-transform duration-500 group-hover:scale-110 ${
-                  index === 0 ? "h-full min-h-[300px] md:min-h-[400px]" : "h-48 md:h-56"
-                }`}
-              />
-              <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-colors duration-300" />
-            </div>
+              <div className="relative overflow-hidden rounded-xl group h-full">
+                <img
+                  src={image}
+                  alt={`Spa Park Hôtel - Photo ${index + 1}`}
+                  className={`w-full object-cover transition-transform duration-500 group-hover:scale-110 ${
+                    index === 0 ? "h-full min-h-[300px] md:min-h-[400px]" : "h-48 md:h-56"
+                  }`}
+                />
+                <div className="absolute inset-0 bg-charcoal/0 group-hover:bg-charcoal/20 transition-colors duration-300" />
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Spa Services */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {spaServices.map((service) => (
-            <Card
-              key={service.title}
-              className="bg-card border-border hover:border-primary/30 transition-colors p-6 text-center"
-            >
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <service.icon className="w-6 h-6 text-primary" />
-              </div>
-              <h4 className="font-semibold text-foreground text-sm">{service.title}</h4>
-            </Card>
+            <StaggerItem key={service.title}>
+              <Card
+                className="bg-card border-border hover:border-primary/30 transition-colors p-6 text-center"
+              >
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <service.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h4 className="font-semibold text-foreground text-sm">{service.title}</h4>
+              </Card>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

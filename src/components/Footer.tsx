@@ -1,4 +1,6 @@
 import { Phone, Mail, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
+import { AnimatedSection, StaggerContainer, StaggerItem } from "./AnimatedSection";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -6,9 +8,9 @@ const Footer = () => {
   return (
     <footer className="bg-charcoal text-white">
       <div className="container-hotel px-4 py-12">
-        <div className="grid md:grid-cols-3 gap-12">
+        <StaggerContainer className="grid md:grid-cols-3 gap-12">
           {/* Brand */}
-          <div>
+          <StaggerItem>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
                 <span className="text-primary-foreground font-display font-bold">P</span>
@@ -22,10 +24,10 @@ const Footer = () => {
               Votre adresse à Lubumbashi pour un séjour confortable 
               et une cuisine soignée.
             </p>
-          </div>
+          </StaggerItem>
 
           {/* Quick Links */}
-          <div>
+          <StaggerItem>
             <h4 className="font-semibold mb-4">Liens Rapides</h4>
             <nav className="space-y-2">
               <a href="#accueil" className="block text-white/70 hover:text-primary transition-colors">
@@ -44,10 +46,10 @@ const Footer = () => {
                 Contact
               </a>
             </nav>
-          </div>
+          </StaggerItem>
 
           {/* Contact */}
-          <div>
+          <StaggerItem>
             <h4 className="font-semibold mb-4">Contact</h4>
             <div className="space-y-3">
               <a 
@@ -69,13 +71,13 @@ const Footer = () => {
                 <span>Avenue Munongo n°50, Lubumbashi</span>
               </div>
             </div>
-          </div>
-        </div>
+          </StaggerItem>
+        </StaggerContainer>
 
         {/* Bottom */}
-        <div className="border-t border-white/10 mt-12 pt-8 text-center text-sm text-white/50">
+        <AnimatedSection className="border-t border-white/10 mt-12 pt-8 text-center text-sm text-white/50">
           <p>© {currentYear} Park Hôtel Lubumbashi. Tous droits réservés.</p>
-        </div>
+        </AnimatedSection>
       </div>
     </footer>
   );

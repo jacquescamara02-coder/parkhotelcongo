@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useEffect } from "react";
+import { AnimatedSection, StaggerContainer, StaggerItem } from "./AnimatedSection";
 
 const faqs = [
   {
@@ -51,7 +52,6 @@ const faqs = [
 
 const FAQSection = () => {
   useEffect(() => {
-    // Inject FAQPage schema
     const script = document.createElement("script");
     script.type = "application/ld+json";
     script.text = JSON.stringify({
@@ -75,7 +75,7 @@ const FAQSection = () => {
   return (
     <section id="faq" className="section-padding bg-secondary/30">
       <div className="container-hotel max-w-3xl">
-        <div className="text-center mb-12">
+        <AnimatedSection className="text-center mb-12">
           <span className="text-primary font-semibold tracking-wider uppercase text-sm">
             FAQ
           </span>
@@ -84,24 +84,27 @@ const FAQSection = () => {
             Retrouvez les réponses aux questions les plus posées sur le Park
             Hôtel Lubumbashi.
           </p>
-        </div>
+        </AnimatedSection>
 
-        <Accordion type="single" collapsible className="space-y-3">
-          {faqs.map((faq, index) => (
-            <AccordionItem
-              key={index}
-              value={`faq-${index}`}
-              className="bg-card rounded-xl border border-border px-6 data-[state=open]:border-primary/30"
-            >
-              <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground leading-relaxed">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <StaggerContainer>
+          <Accordion type="single" collapsible className="space-y-3">
+            {faqs.map((faq, index) => (
+              <StaggerItem key={index}>
+                <AccordionItem
+                  value={`faq-${index}`}
+                  className="bg-card rounded-xl border border-border px-6 data-[state=open]:border-primary/30"
+                >
+                  <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline">
+                    {faq.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              </StaggerItem>
+            ))}
+          </Accordion>
+        </StaggerContainer>
       </div>
     </section>
   );

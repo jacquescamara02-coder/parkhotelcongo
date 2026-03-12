@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Wine, Coffee, Armchair, CreditCard, Banknote } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { AnimatedSection, StaggerContainer, StaggerItem } from "./AnimatedSection";
 import receptionImage from "@/assets/reception.jpeg";
 import reception2Image from "@/assets/reception2.jpeg";
 import reception3Image from "@/assets/reception3.jpeg";
@@ -95,7 +96,7 @@ const ServicesSection = () => {
   return (
     <section id="services" className="section-padding bg-secondary/30">
       <div className="container-hotel">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-primary font-semibold tracking-wider uppercase text-sm">
             Nos Services
           </span>
@@ -106,27 +107,30 @@ const ServicesSection = () => {
             Profitez de nos installations modernes et de notre service attentionné 
             pour un séjour inoubliable à Lubumbashi.
           </p>
-        </div>
+        </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <StaggerContainer className="grid md:grid-cols-2 gap-8 mb-12">
           {services.map((service) => (
-            <ServiceCard key={service.title} service={service} />
+            <StaggerItem key={service.title}>
+              <ServiceCard service={service} />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {amenities.map((amenity) => (
-            <Card 
-              key={amenity.title}
-              className="bg-card border-border hover:border-primary/30 transition-colors p-6 text-center"
-            >
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <amenity.icon className="w-6 h-6 text-primary" />
-              </div>
-              <h4 className="font-semibold text-foreground">{amenity.title}</h4>
-            </Card>
+            <StaggerItem key={amenity.title}>
+              <Card 
+                className="bg-card border-border hover:border-primary/30 transition-colors p-6 text-center"
+              >
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <amenity.icon className="w-6 h-6 text-primary" />
+                </div>
+                <h4 className="font-semibold text-foreground">{amenity.title}</h4>
+              </Card>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

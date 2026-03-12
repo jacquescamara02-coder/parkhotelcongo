@@ -2,17 +2,14 @@ import { useState, useEffect } from "react";
 import { Bed, Bath, Wifi, Tv, Wind, Images } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { AnimatedSection, StaggerContainer, StaggerItem } from "./AnimatedSection";
 import RoomGalleryDialog from "./RoomGalleryDialog";
 import room1Image from "@/assets/room1.jpeg";
 import room2Image from "@/assets/room2.jpeg";
-import lobbyImage from "@/assets/lobby.jpeg";
 import bathroom1Image from "@/assets/bathroom1.jpeg";
 import bathroom2Image from "@/assets/bathroom2.jpeg";
 import showerImage from "@/assets/shower.jpeg";
 import deskImage from "@/assets/desk.jpeg";
-import loungeImage from "@/assets/lounge.jpeg";
-import staircaseImage from "@/assets/staircase.jpeg";
-import receptionImage from "@/assets/reception.jpeg";
 import jardin1Image from "@/assets/jardin1.jpeg";
 import jardin2Image from "@/assets/jardin2.jpeg";
 import jardin3Image from "@/assets/jardin3.jpeg";
@@ -71,7 +68,7 @@ const RoomsSection = () => {
     <section id="chambres" className="section-padding bg-secondary/30 african-pattern">
       <div className="container-hotel">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-primary font-semibold tracking-wider uppercase text-sm">
             Nos Chambres
           </span>
@@ -82,70 +79,70 @@ const RoomsSection = () => {
             77 chambres soigneusement aménagées avec salles de bain privées et lits 
             confortables de 2 à 3 places pour un bon repos.
           </p>
-        </div>
+        </AnimatedSection>
 
         {/* Rooms Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {rooms.map((room, index) => (
-            <Card 
-              key={room.name} 
-              className="overflow-hidden card-hover bg-card border-0 shadow-card"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div 
-                className="relative h-64 overflow-hidden cursor-pointer group"
-                onClick={() => setSelectedRoom(room)}
+        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {rooms.map((room) => (
+            <StaggerItem key={room.name}>
+              <Card 
+                className="overflow-hidden card-hover bg-card border-0 shadow-card h-full"
               >
-                {room.images ? (
-                  room.images.map((img, imgIdx) => (
+                <div 
+                  className="relative h-64 overflow-hidden cursor-pointer group"
+                  onClick={() => setSelectedRoom(room)}
+                >
+                  {room.images ? (
+                    room.images.map((img, imgIdx) => (
+                      <img
+                        key={imgIdx}
+                        src={img}
+                        alt={`${room.name} ${imgIdx + 1}`}
+                        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+                        style={{ opacity: currentSlide === imgIdx ? 1 : 0 }}
+                      />
+                    ))
+                  ) : (
                     <img
-                      key={imgIdx}
-                      src={img}
-                      alt={`${room.name} ${imgIdx + 1}`}
-                      className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-                      style={{ opacity: currentSlide === imgIdx ? 1 : 0 }}
+                      src={room.image}
+                      alt={room.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                  ))
-                ) : (
-                  <img
-                    src={room.image}
-                    alt={room.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                )}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 text-white font-medium">
-                    <Images className="w-5 h-5" />
-                    Voir les photos
+                  )}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 text-white font-medium">
+                      <Images className="w-5 h-5" />
+                      Voir les photos
+                    </div>
                   </div>
                 </div>
-              </div>
-              <CardContent className="p-6">
-                <h3 className="font-display text-xl font-semibold mb-2">{room.name}</h3>
-                <p className="text-muted-foreground mb-4">{room.description}</p>
-                
-                <div className="flex flex-wrap gap-3 mb-6">
-                  {room.features.map((feature) => (
-                    <span 
-                      key={feature}
-                      className="inline-flex items-center gap-1.5 text-sm text-muted-foreground bg-secondary px-3 py-1.5 rounded-full"
-                    >
-                      {amenityIcons[feature] || null}
-                      {feature}
-                    </span>
-                  ))}
-                </div>
+                <CardContent className="p-6">
+                  <h3 className="font-display text-xl font-semibold mb-2">{room.name}</h3>
+                  <p className="text-muted-foreground mb-4">{room.description}</p>
+                  
+                  <div className="flex flex-wrap gap-3 mb-6">
+                    {room.features.map((feature) => (
+                      <span 
+                        key={feature}
+                        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground bg-secondary px-3 py-1.5 rounded-full"
+                      >
+                        {amenityIcons[feature] || null}
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
 
-                <Button 
-                  asChild
-                  className="w-full bg-primary hover:bg-primary/90"
-                >
-                  <a href="#reservation">Réserver cette chambre</a>
-                </Button>
-              </CardContent>
-            </Card>
+                  <Button 
+                    asChild
+                    className="w-full bg-primary hover:bg-primary/90"
+                  >
+                    <a href="#reservation">Réserver cette chambre</a>
+                  </Button>
+                </CardContent>
+              </Card>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
 
       {/* Gallery Dialog */}
