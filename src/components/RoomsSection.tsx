@@ -135,7 +135,9 @@ const RoomsSection = () => {
                     asChild
                     className="w-full bg-primary hover:bg-primary/90"
                   >
-                    <a href="#reservation">Réserver cette chambre</a>
+                    <a href="#reservation">
+                      {room.name === "Le Jardin" ? "Réserver le Jardin" : "Réserver cette chambre"}
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
