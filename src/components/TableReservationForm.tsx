@@ -129,6 +129,10 @@ const TableReservationForm = ({ isOpen, onClose }: TableReservationFormProps) =>
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-5">
+          {/* Honeypot */}
+          <div className="absolute opacity-0 pointer-events-none" aria-hidden="true" style={{ position: 'absolute', left: '-9999px' }}>
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+          </div>
           {/* Name */}
           <div className="space-y-2">
             <Label htmlFor="table_name" className="flex items-center gap-2">
