@@ -105,6 +105,17 @@ const ReservationForm = () => {
           {/* Form */}
           <AnimatedSection variants={scaleUp}>
             <form onSubmit={handleSubmit} className="bg-card rounded-2xl p-8 md:p-10 shadow-elevated">
+              {/* Honeypot - hidden from real users */}
+              <div className="absolute opacity-0 pointer-events-none" aria-hidden="true" style={{ position: 'absolute', left: '-9999px' }}>
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Name */}
                 <div className="space-y-2">
