@@ -9,8 +9,12 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { AnimatedSection, scaleUp } from "./AnimatedSection";
 
+const RATE_LIMIT_KEY = "room_reservation_last";
+const RATE_LIMIT_MS = 60000; // 1 minute between submissions
+
 const ReservationForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
