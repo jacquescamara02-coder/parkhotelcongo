@@ -28,9 +28,21 @@ const ReservationForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot check
+    if (honeypot) return;
+
+    // Rate limiting
+    const lastSubmit = localStorage.getItem(RATE_LIMIT_KEY);
+    if (lastSubmit && Date.now() - parseInt(lastSubmit) < RATE_LIMIT_MS) {
+      toast.error("Veuillez patienter avant de soumettre à nouveau.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
+      localStorage.setItem(RATE_LIMIT_KEY, Date.now().toString());
       const { error } = await supabase.from("reservations").insert({
         guest_name: formData.name.trim(),
         email: formData.email.trim(),
