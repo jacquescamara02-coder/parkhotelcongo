@@ -41,9 +41,19 @@ const TableReservationForm = ({ isOpen, onClose }: TableReservationFormProps) =>
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (honeypot) return;
+
+    const lastSubmit = localStorage.getItem(RATE_LIMIT_KEY);
+    if (lastSubmit && Date.now() - parseInt(lastSubmit) < RATE_LIMIT_MS) {
+      toast.error("Veuillez patienter avant de soumettre à nouveau.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
+      localStorage.setItem(RATE_LIMIT_KEY, Date.now().toString());
       // Insert into database
       const { error: dbError } = await supabase.from("table_reservations").insert({
         guest_name: formData.guest_name,
