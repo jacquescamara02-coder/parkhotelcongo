@@ -19,8 +19,12 @@ interface TableReservationFormProps {
   onClose: () => void;
 }
 
+const RATE_LIMIT_KEY = "table_reservation_last";
+const RATE_LIMIT_MS = 60000;
+
 const TableReservationForm = ({ isOpen, onClose }: TableReservationFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
   const [formData, setFormData] = useState({
     guest_name: "",
     email: "",
