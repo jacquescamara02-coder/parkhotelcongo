@@ -19,8 +19,12 @@ interface TableReservationFormProps {
   onClose: () => void;
 }
 
+const RATE_LIMIT_KEY = "table_reservation_last";
+const RATE_LIMIT_MS = 60000;
+
 const TableReservationForm = ({ isOpen, onClose }: TableReservationFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
   const [formData, setFormData] = useState({
     guest_name: "",
     email: "",
@@ -37,9 +41,19 @@ const TableReservationForm = ({ isOpen, onClose }: TableReservationFormProps) =>
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (honeypot) return;
+
+    const lastSubmit = localStorage.getItem(RATE_LIMIT_KEY);
+    if (lastSubmit && Date.now() - parseInt(lastSubmit) < RATE_LIMIT_MS) {
+      toast.error("Veuillez patienter avant de soumettre à nouveau.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
+      localStorage.setItem(RATE_LIMIT_KEY, Date.now().toString());
       // Insert into database
       const { error: dbError } = await supabase.from("table_reservations").insert({
         guest_name: formData.guest_name,
@@ -115,6 +129,10 @@ const TableReservationForm = ({ isOpen, onClose }: TableReservationFormProps) =>
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-5">
+          {/* Honeypot */}
+          <div className="absolute opacity-0 pointer-events-none" aria-hidden="true" style={{ position: 'absolute', left: '-9999px' }}>
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+          </div>
           {/* Name */}
           <div className="space-y-2">
             <Label htmlFor="table_name" className="flex items-center gap-2">

@@ -9,8 +9,12 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { AnimatedSection, scaleUp } from "./AnimatedSection";
 
+const RATE_LIMIT_KEY = "room_reservation_last";
+const RATE_LIMIT_MS = 60000; // 1 minute between submissions
+
 const ReservationForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,9 +28,21 @@ const ReservationForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot check
+    if (honeypot) return;
+
+    // Rate limiting
+    const lastSubmit = localStorage.getItem(RATE_LIMIT_KEY);
+    if (lastSubmit && Date.now() - parseInt(lastSubmit) < RATE_LIMIT_MS) {
+      toast.error("Veuillez patienter avant de soumettre à nouveau.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
+      localStorage.setItem(RATE_LIMIT_KEY, Date.now().toString());
       const { error } = await supabase.from("reservations").insert({
         guest_name: formData.name.trim(),
         email: formData.email.trim(),
@@ -89,6 +105,17 @@ const ReservationForm = () => {
           {/* Form */}
           <AnimatedSection variants={scaleUp}>
             <form onSubmit={handleSubmit} className="bg-card rounded-2xl p-8 md:p-10 shadow-elevated">
+              {/* Honeypot - hidden from real users */}
+              <div className="absolute opacity-0 pointer-events-none" aria-hidden="true" style={{ position: 'absolute', left: '-9999px' }}>
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Name */}
                 <div className="space-y-2">
