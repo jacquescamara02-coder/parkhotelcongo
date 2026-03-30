@@ -36,8 +36,9 @@ const rooms = [
     description: "Un cadre verdoyant et paisible en plein air",
     images: [jardin1Image, jardin2Image, jardin3Image, jardin4Image, jardin5Image],
     image: jardin1Image,
-    features: ["Lit king-size", "Salon privé", "Minibar", "Vue sur cour"],
+    features: [],
     gallery: [jardin1Image, jardin2Image, jardin3Image, jardin4Image, jardin5Image],
+    hideButton: true,
   },
 ];
 
@@ -131,14 +132,16 @@ const RoomsSection = () => {
                     ))}
                   </div>
 
-                  <Button 
-                    asChild
-                    className="w-full bg-primary hover:bg-primary/90"
-                  >
-                    <a href="#reservation">
-                      {room.name === "Le Jardin" ? "Réserver le Jardin" : "Réserver cette chambre"}
-                    </a>
-                  </Button>
+                  {!room.hideButton && (
+                    <Button 
+                      asChild
+                      className="w-full bg-primary hover:bg-primary/90"
+                    >
+                      <a href="#reservation">
+                        Réserver cette chambre
+                      </a>
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             </StaggerItem>
