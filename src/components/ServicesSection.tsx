@@ -9,7 +9,7 @@ import reception4Image from "@/assets/reception4.jpeg";
 import barImage from "@/assets/bar.jpeg";
 import atmImage from "@/assets/atm.jpeg";
 
-const receptionImages = [receptionImage, reception2Image, reception3Image, reception4Image];
+const receptionImages = [reception2Image, reception3Image, reception4Image];
 
 const services = [
   {
