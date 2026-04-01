@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "./AnimatedSection";
 import RoomGalleryDialog from "./RoomGalleryDialog";
-import room1Image from "@/assets/room1.jpeg";
+import room1Image from "@/assets/room1_new.jpeg";
 import room2Image from "@/assets/room2.jpeg";
 import bathroom1Image from "@/assets/bathroom1.jpeg";
 import bathroom2Image from "@/assets/bathroom2.jpeg";
